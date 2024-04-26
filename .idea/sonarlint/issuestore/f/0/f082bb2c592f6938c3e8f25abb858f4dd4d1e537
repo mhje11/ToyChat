@@ -1,0 +1,9 @@
+
+7
+java:S1220""Move this file to a named package.8ÇŽ‚Âñ1
+s
+java:S3008"QRename this field "GEN_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ˆŽšùÿÿÿÿ8ÒŽ‚Âñ1
+G	java:S106"+Replace this use of System.out by a logger.(Ü¶þã8×Ž‚Âñ1
+G	java:S106"+Replace this use of System.out by a logger.(Ù«õ±8ØŽ‚Âñ1
+X
+java:S2696"6Make the enclosing method "static" or remove this set.(œÙ¼Úýÿÿÿÿ8ØŽ‚Âñ1

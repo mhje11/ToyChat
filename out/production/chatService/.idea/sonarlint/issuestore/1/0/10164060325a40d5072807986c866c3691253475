@@ -1,0 +1,29 @@
+
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(½•ƒΰύÿÿÿÿ8–ψ—Αρ1J$c68ec200-fe56-4ee3-80ed-97d680a59173
+}
+java:S11417"5Extract this nested try block into a separate method.(΅»Άόωÿÿÿÿ8γη£Αρ1J$6644f445-189b-4ee0-a615-d3657619d455
+]
+java:S1220""Move this file to a named package.8›ψ—Αρ1J$e139af4b-d77a-4dd8-bff9-86f888b2f88e
+
+java:S2259?"FA "NullPointerException" could be thrown; "chatRoom" is nullable here.(µν°…ώÿÿÿÿ8®Ρ³Αρ1J$ad012653-2ebb-446e-ad02-735686b0dc98
+~
+java:S1117"6Rename "in" which hides the field declared at line 11.(άά³Ήωÿÿÿÿ8ΊΡ³Αρ1J$6dfbfaab-adf5-41c3-ae83-2438002a5925
+T
+java:S1117"7Rename "out" which hides the field declared at line 12.(όΞΦΜ8’ψΎΑρ1
+m	java:S106"+Replace this use of System.out by a logger.(ζ…‰­8Ρψ—Αρ1J$8e41a3f6-7441-494d-a970-7f2fccef6e18
+•
+java:S3776!"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(“–ύώ8…θ£Αρ1J$169264cf-8272-49c2-9952-5d07bf237b3c
+m	java:S106""+Replace this use of System.out by a logger.(›Ιƒ8Τψ—Αρ1J$424613e3-d934-4856-ad10-3065d85414cf
+m	java:S106'"+Replace this use of System.out by a logger.(±φ›Ώ8Φψ—Αρ1J$56cf878e-1630-465d-a018-df0ce8a7ea5a
+~
+java:S1117/";Rename "chatRoom" which hides the field declared at line 9.(ί®ÿ”8θ£Αρ1J$16103384-394e-4045-96cb-e78c986803f2
+r	java:S1063"+Replace this use of System.out by a logger.(¬ΉΎΥώÿÿÿÿ8θ£Αρ1J$b75bcf72-9480-4b32-9387-313e27e8000e
+m	java:S106K"+Replace this use of System.out by a logger.(—™ΰω8θ£Αρ1J$4eb85444-855b-4594-9ecb-e65cb3396d70
+m	java:S106O"+Replace this use of System.out by a logger.(°Ι§8θ£Αρ1J$345850e7-b04c-4de8-9419-86fb76c590f6
+_
+java:S1116S"Remove this empty statement.(ΎΧύΣ8Ψψ—Αρ1J$c5d35208-6c67-4776-91ae-b4ca31e65829
+k
+java:S1068
+"(Remove this unused "name" private field.(Λ¥Ό8Ϊψ—Αρ1J$a53f352a-ee0e-4bd8-ad3e-33c8dad5b68c
+r
+java:S1068"*Remove this unused "socket" private field.(Ε’¬Ϊώÿÿÿÿ8Ϊψ—Αρ1J$c5f7f1f9-fac2-45eb-8576-eb0f3d0c0000
