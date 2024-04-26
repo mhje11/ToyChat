@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class ChatThread extends Thread {
     private ChatRoom chatRoom;
@@ -92,12 +93,17 @@ public class ChatThread extends Thread {
                     }
                         chatRoom = null;
                 }
-                else if (line.equals("/roomUser")) {
+                else if (line.equalsIgnoreCase("/roomUser")) {
                     roomUserList();
-                } else if (line.equals("/UserList")) {
+                } else if (line.equalsIgnoreCase("/UserList")) {
                     userList();
+                } else if (line.startsWith("/w")) {
+                    StringTokenizer st = new StringTokenizer(line, " ");
+                    String head = st.nextToken();
+                    String targetUser = st.nextToken();
+                    String whisperMsg = st.nextToken();
+                    whisper(nickName, targetUser, whisperMsg);
                 }
-
                 else if(line.indexOf("/list") == 0){
                     if (chatRoomService.chatRoomList().equals("")) {
                         out.println("존재하는 방이 없습니다.");
@@ -120,5 +126,24 @@ public class ChatThread extends Thread {
 
     public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
+    }
+    public void whisper(String id, String targetUser, String message) {
+
+        PrintWriter targetOut = userList.get(targetUser); // 목적지 사용자의 출력 스트림 가져오기
+        PrintWriter idOut = userList.get(id);
+        if (targetUser.equals(id)) {
+            targetOut.println("자기자신에게 귓속말을 할 수 없습니다");
+            targetOut.flush();
+            return;
+        }
+        if (targetOut != null) {
+            targetOut.println(id + "님의 귓속말: " + message); // 목적지 사용자에게 메시지 전송
+            targetOut.flush();
+            idOut.println(id + " >>> " + targetUser + " : " + message);
+            idOut.flush();
+        } else {
+            // 목적지 사용자가 없는 경우 메시지를 보낼 수 없음을 알림
+            userList.get(id).println("귓속말을 보낼 사용자 '" + targetUser + "'를 찾을 수 없습니다.");
+        }
     }
 }
