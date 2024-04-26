@@ -104,6 +104,16 @@ public class ChatThread extends Thread {
                     String whisperMsg = st.nextToken();
                     whisper(nickName, targetUser, whisperMsg);
                 }
+                else if (line.equalsIgnoreCase("help")) {
+                    out.println("/create : 방 생성");
+                    out.println("/join + roomID: roomID 방에 접속");
+                    out.println("/quit : 클라이언트 종료");
+                    out.println("/roomUser : 같은 방에 있는 유저 리스트 조회");
+                    out.println("/userList : 클라이언트에 접속한 유저 리스트 조회");
+                    out.println("/exit : 방 나가기");
+                    out.println("/list : 생성된 방의 리스트 조회");
+                    out.println("/help : 명령어");
+                }
                 else if(line.indexOf("/list") == 0){
                     if (chatRoomService.chatRoomList().equals("")) {
                         out.println("존재하는 방이 없습니다.");
