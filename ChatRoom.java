@@ -4,7 +4,7 @@ import java.util.List;
 public class ChatRoom {
     private int id;
     private String title;
-    private List<ChatThread> chatThreadList;
+    protected List<ChatThread> chatThreadList;
 
     public ChatRoom(int id, String title) {
         chatThreadList = new ArrayList<>();
@@ -13,10 +13,9 @@ public class ChatRoom {
     }
 
 
-    public void broadcast(String msg) {
-        for (int i = 0; i < chatThreadList.size(); i++){
-            ChatThread chatThread = chatThreadList.get(i);
-            chatThread.sendMessage(msg);
+    public void broadcast(String sender, String msg) {
+        for (ChatThread chatThread : chatThreadList) {
+            chatThread.sendMessage(sender + " : " + msg);
         }
     }
 
@@ -27,7 +26,6 @@ public class ChatRoom {
 
     public void removeChatThread(ChatThread chatThread) {
         chatThreadList.remove(chatThread);
-        chatThread.setChatRoom(this);
     }
 
     public int getId() {
@@ -48,9 +46,7 @@ public class ChatRoom {
 
     @Override
     public String toString() {
-        return "ChatRoomService{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                '}';
+        return "방 id : " + id +
+                ", 방의 제목 : " + title;
     }
 }

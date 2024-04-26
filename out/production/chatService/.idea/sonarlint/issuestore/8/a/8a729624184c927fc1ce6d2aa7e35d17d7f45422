@@ -1,4 +1,9 @@
 
 ]
-java:S1220""Move this file to a named package.8ÏãÇÀñ1J$bc2c7fa1-bc7b-4b3e-b12c-c559557a04df
-m	java:S106"+Replace this use of System.out by a logger.(ÌÚôó8âÀÇÀñ1J$205dc2b8-21c5-472e-9c29-2723089a1b5a
+java:S1220""Move this file to a named package.8ÏãÇÀñ1J$33fcb45e-a50b-47e4-bede-f1e5e648f4fc
+
+java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(«ŠûÖ8ÏÂÁñ1J$7bd0b1cc-1df6-4199-9d3d-657edc638d87
+j
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8ŸÏÂÁñ1J$ddf9b61a-6cb6-41c1-b8d3-04e80a41531c
+r	java:S106"+Replace this use of System.out by a logger.(ø—‘üÿÿÿÿ8âÀÇÀñ1J$f0a465dc-1e0c-470a-89da-fb171c31107b
+G	java:S106"+Replace this use of System.out by a logger.(ÌÚôó8¯ØøÁñ1

@@ -20,18 +20,25 @@ public class ChatRoomService {
         return chatRoom;
     }
 
-    public Iterator<ChatRoom> getChatRoomIterator(){
-        return chatRoomList.iterator();
+    public String chatRoomList() {
+        StringBuilder sb = new StringBuilder();
+        for (ChatRoom chatRoom : chatRoomList) {
+            sb.append(chatRoom.toString()).append('\n');
+        }
+        return sb.toString();
     }
 
     public void join(int id, ChatThread chatThread) {
-        for(int i=0;i<chatRoomList.size();i++){
+        for (int i = 0; i < chatRoomList.size(); i++) {
             ChatRoom chatRoom = chatRoomList.get(i);
-            if(chatRoom.getId() == id ){
+            if (chatRoom.getId() == id) {
                 chatRoom.addChatThread(chatThread);
                 break;
             }
         }
     }
 
+    public void removeChatRoom(ChatRoom chatRoom) {
+        chatRoomList.remove(chatRoom);
+    }
 }

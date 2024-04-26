@@ -6,21 +6,15 @@ import java.net.Socket;
 
 public class ChatClient {
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            System.out.println("사용법 : java com.example.chat2.ChatClient 닉네임");
-            return;
-        }
 
-        String name = args[0];
-        Socket socket = new Socket("127.0.0.1", 12345);
+        Socket socket = new Socket("127.0.0.1", 1245);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-
+        System.out.println("닉네임을 입력해주세요.");
+        String name = keyboard.readLine();
         out.println(name);
-
         new InputThread(socket, in).start();
-
         try {
             String line = null;
             while ((line = keyboard.readLine()) != null) {
