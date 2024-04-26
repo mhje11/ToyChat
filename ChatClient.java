@@ -20,18 +20,14 @@ public class ChatClient {
             while ((line = keyboard.readLine()) != null) {
                 out.println(line);
                 if ("/quit".equals(line)) {
-                    out.println("/quit");
-                    out.flush();
                     break;
                 }
             }
         } catch (Exception ex) {
             System.out.println("...");
         }
-
     }
 }
-
 
 class InputThread extends Thread {
     private Socket socket;

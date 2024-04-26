@@ -30,6 +30,27 @@ public class ChatThread extends Thread {
     public ChatRoom getChatRoom() {
         return chatRoom;
     }
+    public void userList() {
+        StringBuilder sb = new StringBuilder("접속한 유저 목록:\n");
+        for (String username : userList.keySet()) {
+            sb.append(username).append("\n");
+        }
+        out.println(sb.toString());
+        out.flush();
+    }
+    public void roomUserList() {
+        if (chatRoom == null) {
+            out.println("방에 속해있지 않습니다.");
+            out.flush();
+            return;
+        }
+        StringBuilder sb = new StringBuilder("같은 방에 있는 유저 목록:\n");
+        for (ChatThread thread : chatRoom.chatThreadList) {
+            sb.append(thread.nickName).append("\n");
+        }
+        out.println(sb.toString());
+        out.flush();
+    }
 
     public void sendMessage(String msg) {
         System.out.println(msg);
@@ -64,12 +85,17 @@ public class ChatThread extends Thread {
                     }
                 }
                 else if(line.indexOf("/exit") == 0){
-                    chatRoom.removeChatThread(this);
-                    if (chatRoom.chatThreadList.isEmpty()) {
+                    this.chatRoom.removeChatThread(this);
+                    if (this.chatRoom.chatThreadList.isEmpty()) {
                         chatRoomService.removeChatRoom(chatRoom);
                         System.out.println("방이 삭제됐습니다.");
                     }
                         chatRoom = null;
+                }
+                else if (line.equals("/roomUser")) {
+                    roomUserList();
+                } else if (line.equals("/UserList")) {
+                    userList();
                 }
 
                 else if(line.indexOf("/list") == 0){
@@ -82,12 +108,13 @@ public class ChatThread extends Thread {
                 else if(this.chatRoom != null){
                     System.out.println("속한 방에 브로드캐스트 합니다."+ line);
                     chatRoom.broadcast(nickName, line);
-                }else{
+                }
+                else{
                     System.out.println("속한 채팅 방이 없습니다. ");
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
 
