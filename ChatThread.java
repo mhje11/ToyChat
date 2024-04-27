@@ -22,16 +22,27 @@ public class ChatThread extends Thread {
         this.userList = userList;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-        nickName = in.readLine();
+        boolean nickNameAvailable = false;
+        while (!nickNameAvailable) {
+            nickName = in.readLine();
+            if (!userList.containsKey(nickName)) {
+                nickNameAvailable = true;
+                out.println("닉네임이 등록되었습니다.");
+            } else {
+                out.println("이미 사용 중인 닉네임입니다." + '\n' + "다른 닉네임을 입력해주세요.");
+            }
+        }
         this.chatRoomService = chatRoomService;
         synchronized (userList) {
-                userList.put(this.nickName, out);
+            userList.put(this.nickName, out);
 
         }
     }
+
     public ChatRoom getChatRoom() {
         return chatRoom;
     }
+
     public void userList() {
         StringBuilder sb = new StringBuilder("접속한 유저 목록:\n");
         for (String username : userList.keySet()) {
@@ -40,6 +51,7 @@ public class ChatThread extends Thread {
         out.println(sb.toString());
         out.flush();
     }
+
     public void roomUserList() {
         if (chatRoom == null) {
             out.println("방에 속해있지 않습니다.");
@@ -62,56 +74,71 @@ public class ChatThread extends Thread {
 
     @Override
     public void run() {
-        try{
+        try {
+            boolean currentRoom = false;
             if (chatRoomService.chatRoomList().equals("")) {
                 out.println("생성된 채팅방이 없습니다");
                 out.flush();
                 out.println("/create로 채팅방을 생성 해주세요");
                 out.flush();
-            }else {
+            } else {
                 out.println(chatRoomService.chatRoomList());
                 out.flush();
             }
             out.println("현재 접속한 유저수 : " + userList.size() + "명");
             out.flush();
             String line = null;
-            while((line = in.readLine()) != null){
-                if("/quit".equals(line)){
+            while ((line = in.readLine()) != null) {
+                if ("/quit".equals(line)) {
                     break;
-                }
-                else if(line.indexOf("/create") == 0){
-                    if(line.length() >= 9) {
-                        String title = line.substring(8);
-                        ChatRoom chatRoom = chatRoomService.createChatRoom(title);
-                        this.chatRoom = chatRoom;
-                        this.chatRoom.addChatThread(this);
-                        out.println("방을 생성했습니다.");
+                } else if (line.indexOf("/create") == 0) {
+                    if (currentRoom) {
+                        out.println("이미 방에 입장한 상태입니다. 방을 나가주세요.");
                         out.flush();
-                    }else{
-                        System.out.println("방 제목을 입력하세요.");
+                    } else {
+                        currentRoom = true;
+                        if (line.length() >= 9) {
+                            String title = line.substring(8);
+                            ChatRoom chatRoom = chatRoomService.createChatRoom(title);
+                            this.chatRoom = chatRoom;
+                            this.chatRoom.addChatThread(this);
+                            out.println("방을 생성했습니다.");
+                            out.flush();
+                        } else {
+                            System.out.println("방 제목을 입력하세요.");
+                        }
                     }
-                }
-                else if(line.indexOf("/join") == 0){
+                } else if (line.indexOf("/join") == 0) {
                     try {
-                        chatRoomService.join(Integer.parseInt(line.substring(6)), this);
-                        out.println(chatRoom.getTitle() + " 방에 입장했습니다.");
-                        out.flush();
-                    } catch(Exception ex){
+                        if (currentRoom) {
+                            out.println("이미 방에 입장한 상태입니다. 방을 나가주세요.");
+                            out.flush();
+                        } else {
+                            currentRoom = true;
+                            chatRoomService.join(Integer.parseInt(line.substring(6)), this);
+                            out.println(chatRoom.getTitle() + " 방에 입장했습니다.");
+                            out.flush();
+                        }
+                    }
+                    catch(Exception e){
                         out.println("방 번호가 잘못 되었습니다.");
                         out.flush();
                     }
-                }
-                else if(line.indexOf("/exit") == 0){
-                    this.chatRoom.removeChatThread(this);
-                    out.println("방에서 퇴장했습니다.");
-                    out.flush();
-                    if (this.chatRoom.chatThreadList.isEmpty()) {
-                        chatRoomService.removeChatRoom(chatRoom);
-                        System.out.println("방이 삭제됐습니다.");
-                    }
+                } else if (line.indexOf("/exit") == 0) {
+                    if (this.chatRoom.chatThreadList == null) {
+                        out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
+                    } else {
+                        this.chatRoom.removeChatThread(this);
+                        out.println("방에서 퇴장했습니다.");
+                        out.flush();
+                        currentRoom = false;
+                        if (this.chatRoom.chatThreadList.isEmpty()) {
+                            chatRoomService.removeChatRoom(chatRoom);
+                            System.out.println("방이 삭제됐습니다.");
+                        }
                         chatRoom = null;
-                }
-                else if (line.equalsIgnoreCase("/roomUser")) {
+                    }
+                } else if (line.equalsIgnoreCase("/roomUser")) {
                     roomUserList();
                 } else if (line.equalsIgnoreCase("/UserList")) {
                     userList();
@@ -119,10 +146,13 @@ public class ChatThread extends Thread {
                     StringTokenizer st = new StringTokenizer(line, " ");
                     String head = st.nextToken();
                     String targetUser = st.nextToken();
-                    String whisperMsg = st.nextToken();
-                    whisper(nickName, targetUser, whisperMsg);
-                }
-                else if (line.equalsIgnoreCase("/help")) {
+                    if (!st.hasMoreTokens()) {
+                        out.println("메시지를 입력해주세요.");
+                    } else {
+                        String whisperMsg = st.nextToken();
+                        whisper(nickName, targetUser, whisperMsg);
+                    }
+                } else if (line.equalsIgnoreCase("/help")) {
                     out.println("/create : 방 생성");
                     out.flush();
                     out.println("/join + roomID: roomID 방에 접속");
@@ -139,23 +169,21 @@ public class ChatThread extends Thread {
                     out.flush();
                     out.println("/help : 명령어");
                     out.flush();
-                }
-                else if(line.indexOf("/list") == 0){
+                    out.println("/w + nickName + message : 귓속말 보내기");
+                } else if (line.indexOf("/list") == 0) {
                     if (chatRoomService.chatRoomList().equals("")) {
                         out.println("존재하는 방이 없습니다.");
                     }
                     out.println(chatRoomService.chatRoomList());
                     out.flush();
-                }
-                else if(this.chatRoom != null){
-                    System.out.println("속한 방에 브로드캐스트 합니다."+ line);
+                } else if (this.chatRoom != null) {
+                    System.out.println("속한 방에 브로드캐스트 합니다." + line);
                     chatRoom.broadcast(nickName, line);
-                }
-                else{
-                    System.out.println("속한 채팅 방이 없습니다. ");
+                } else {
+                    out.println("속한 채팅 방이 없습니다. ");
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -163,6 +191,7 @@ public class ChatThread extends Thread {
     public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
     }
+
     public void whisper(String id, String targetUser, String message) {
 
         PrintWriter targetOut = userList.get(targetUser); // 목적지 사용자의 출력 스트림 가져오기
