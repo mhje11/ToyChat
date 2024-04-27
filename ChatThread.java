@@ -115,6 +115,7 @@ public class ChatThread extends Thread {
                             chatRoomService.join(Integer.parseInt(line.substring(6)), this);
                             out.println(chatRoom.getTitle() + " 방에 입장했습니다.");
                             out.flush();
+                            chatRoom.broadcastEnterMessage(nickName);
                         }
                     }
                     catch(Exception e){
@@ -128,6 +129,7 @@ public class ChatThread extends Thread {
                         this.chatRoom.removeChatThread(this);
                         out.println("방에서 퇴장했습니다.");
                         out.flush();
+                        chatRoom.broadcastExitMessage(nickName);
                         currentRoom = false;
                         if (this.chatRoom.chatThreadList.isEmpty()) {
                             chatRoomService.removeChatRoom(chatRoom);

@@ -49,4 +49,19 @@ public class ChatRoom {
         return "방 id : " + id +
                 ", 방의 제목 : " + title;
     }
+    public void broadcastEnterMessage(String nickName) {
+        String message = nickName + "님이 입장했습니다.";
+        broadcastSystemMessage(message);
+    }
+
+    public void broadcastExitMessage(String nickName) {
+        String message = nickName + "님이 퇴장했습니다.";
+        broadcastSystemMessage(message);
+    }
+
+    private void broadcastSystemMessage(String message) {
+        for (ChatThread chatThread : chatThreadList) {
+            chatThread.sendMessage("[시스템] " + message);
+        }
+    }
 }
