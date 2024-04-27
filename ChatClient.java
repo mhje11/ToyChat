@@ -23,6 +23,7 @@ public class ChatClient {
                     break;
                 }
             }
+            socket.close();
         } catch (Exception ex) {
             System.out.println("...");
         }
