@@ -44,6 +44,7 @@ class InputThread extends Thread {
         try {
             String line = null;
             while ((line = in.readLine()) != null) {
+
                 System.out.println(line);
             }
         } catch (Exception ex) {

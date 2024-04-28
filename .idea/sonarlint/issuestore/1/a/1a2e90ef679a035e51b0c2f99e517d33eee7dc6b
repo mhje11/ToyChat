@@ -1,14 +1,14 @@
 
 ]
-java:S1220""Move this file to a named package.8¹øüÅñ1J$98c4ef55-5129-488d-8099-231c3fa0810e
+java:S1220""Move this file to a named package.8÷´Ø™ò1J$17bfc34b-0ef3-4299-921f-1e40e59c79ab
 ‡
 java:S2095
-"DUse try-with-resources or close this "Socket" in a "finally" clause.(âëİß8ÿøüÅñ1J$069bc94e-3fac-4224-900d-f9585f473f3e
-G	java:S106"+Replace this use of System.out by a logger.(¯öé§8§Êö—ò1
-L	java:S106"+Replace this use of System.out by a logger.(É“æıÿÿÿÿ8©Êö—ò1
-L	java:S106/"+Replace this use of System.out by a logger.(ñ—¸½úÿÿÿÿ8­Êö—ò1
-L	java:S1062"+Replace this use of System.out by a logger.(Ùİ–±úÿÿÿÿ8­Êö—ò1
+"DUse try-with-resources or close this "Socket" in a "finally" clause.(âëİß8µØ™ò1J$d1038471-0843-466b-b86a-aaf9e08c8f9b
+m	java:S106"+Replace this use of System.out by a logger.(¯öé§8ˆµØ™ò1J$62a5016e-2764-4331-9784-bf613aa5b599
+r	java:S106"+Replace this use of System.out by a logger.(É“æıÿÿÿÿ8‰µØ™ò1J$3548c883-fa7d-42c7-82fd-6921e2632354
+r	java:S1060"+Replace this use of System.out by a logger.(ñ—¸½úÿÿÿÿ8ŒµØ™ò1J$b074e8b1-1fa9-43f0-af4c-6da5db44f2fb
+r	java:S1063"+Replace this use of System.out by a logger.(Ùİ–±úÿÿÿÿ8µØ™ò1J$0e2b8a40-e2ad-46e5-9c87-18f33f35ac50
 z
-java:S1128"7Remove this unused import 'java.io.OutputStreamWriter'.(Ÿ“¸8¼ùüÅñ1J$94de5416-231b-41b4-97f7-b2d03c41de95
-L
-java:S1068""*Remove this unused "socket" private field.(Å’¬Úşÿÿÿÿ8®Êö—ò1
+java:S1128"7Remove this unused import 'java.io.OutputStreamWriter'.(Ÿ“¸8µØ™ò1J$28412c44-8487-499c-903f-3c1f88cd9e34
+r
+java:S1068""*Remove this unused "socket" private field.(Å’¬Úşÿÿÿÿ8µØ™ò1J$712d931c-0501-452e-b0c1-f0b30eb03374

@@ -1,22 +1,22 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ8Ñ¶õ˜ò1J$9db72143-3baf-40f5-bbc6-170b9d8c9fcb
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ8ÜôÏšò1J$2e47df85-647c-4987-8c4d-831332a87493
 }
-java:S1141n"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Õ¶õ˜ò1J$4e701532-08c5-430a-8ca5-6e40fa78a78c
+java:S1141n"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßôÏšò1J$8b34bf78-4e95-4cde-b438-f63c0da430ff
 ]
-java:S1220""Move this file to a named package.8ÒşéÈñ1J$97dd4b3e-23a8-462d-997b-f258bdd78044
+java:S1220""Move this file to a named package.8àôÏšò1J$82072558-effd-402b-b294-7199661815f9
 •
-java:S2445""M"userList" is a method parameter, and should not be used for synchronization.(ñøÂûÿÿÿÿ8¸õ˜ò1J$7f2099c8-1309-4e40-9d5c-01116e29f1ad
-l	java:S106D"+Replace this use of System.out by a logger.(‚š‰18ÑÉö—ò1J$e332f32f-11aa-45d2-ad60-fbbd28644206
+java:S2445""M"userList" is a method parameter, and should not be used for synchronization.(ñøÂûÿÿÿÿ8ñôÏšò1J$46ff49a0-3e71-4fd2-8cdc-d4d449169f6e
+l	java:S106D"+Replace this use of System.out by a logger.(‚š‰18ôôÏšò1J$fed302e7-3df9-4dd7-a503-eded5dbc3d95
 •
-java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(“–ış8•¸õ˜ò1J$e3b9d35a-876e-4536-b7bc-b6ae62f5fa86
+java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(“–ış8öôÏšò1J$235c9bcd-0f4b-441f-b79f-f60da462c49a
 ~
-java:S1117d";Rename "chatRoom" which hides the field declared at line 9.(ß®ÿ”8™¸õ˜ò1J$ae781ed0-9aff-462d-858c-b99701ed0eff
-r	java:S106j"+Replace this use of System.out by a logger.(¬¹¾Õşÿÿÿÿ8×Éö—ò1J$c80d1a65-9c24-463d-bb65-ada1e9257551
-s	java:S106‹"+Replace this use of System.out by a logger.(‚ôïÈşÿÿÿÿ8¸õ˜ò1J$5e45f1e0-4591-4e02-b012-e10e6d471e65
+java:S1117d";Rename "chatRoom" which hides the field declared at line 9.(ß®ÿ”8úôÏšò1J$591bd89f-cce5-4703-814b-023660eed073
+r	java:S106j"+Replace this use of System.out by a logger.(¬¹¾Õşÿÿÿÿ8úôÏšò1J$d4d58d50-7678-41b3-893d-86ff46208add
+s	java:S106‹"+Replace this use of System.out by a logger.(‚ôïÈşÿÿÿÿ8üôÏšò1J$d62985e4-e777-49b2-bc65-79620b1a6af7
 r
-java:S1481•")Remove this unused "head" local variable.(ì–ä“øÿÿÿÿ8ÓÉö—ò1J$f917f17e-a2d3-4b2d-992d-e3d00dd2a8a8
-n	java:S106·"+Replace this use of System.out by a logger.(—™àù8¢¸õ˜ò1J$d1fe0836-8815-4dea-99e0-da44e7552bc8
-r
-java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8ª¸™ò1J$6e66e443-7428-4d8f-9c0f-3a8dc60be1c9
+java:S1481•")Remove this unused "head" local variable.(ì–ä“øÿÿÿÿ8şôÏšò1J$c02f6a77-34ae-4f74-a8cf-9f7e88e79e00
+n	java:S106·"+Replace this use of System.out by a logger.(—™àù8õÏšò1J$3bcf3d1c-3542-4f1a-b3c1-a92c6960211f
+L
+java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8üÃÒšò1
 Š
-java:S6541J"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 127 to 64, Complexity from 20 to 14, Nesting Level from 5 to 2, Number of Variables from 11 to 6.(“–ış8¨¸õ˜ò1J$7e1b3494-5fde-4c0a-a032-735d133ae729
+java:S6541J"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 127 to 64, Complexity from 20 to 14, Nesting Level from 5 to 2, Number of Variables from 11 to 6.(“–ış8…õÏšò1J$7ccc7e6a-60af-45c1-a1c9-e20c4be18dd3
