@@ -106,6 +106,26 @@ public class ChatThread extends Thread {
                             System.out.println("방 제목을 입력하세요.");
                         }
                     }
+                } else if (line.indexOf("/passwordRoom") == 0) {
+                    try {
+                        out.println("비밀방을 생성합니다. 방 제목과 암호를 입력하세요.");
+                        out.flush();
+
+                        out.println("방 제목:");
+                        out.flush();
+                        String title = in.readLine();
+
+                        out.println("암호:");
+                        out.flush();
+                        String password = in.readLine();
+                        ChatRoom createdRoom = chatRoomService.createPasswordChatRoom(title, password);
+                        this.chatRoom = createdRoom;
+                        this.chatRoom.addChatThread(this);
+                        out.println("비밀방이 생성되었습니다. 방 번호: " + createdRoom.getId());
+                        out.flush();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else if (line.indexOf("/join") == 0) {
                     try {
                         if (currentRoom) {
@@ -113,17 +133,40 @@ public class ChatThread extends Thread {
                             out.flush();
                         } else {
                             currentRoom = true;
-                            chatRoomService.join(Integer.parseInt(line.substring(6)), this);
-                            out.println(chatRoom.getTitle() + " 방에 입장했습니다.");
-                            out.flush();
-                            chatRoom.broadcastEnterMessage(nickName);
+                            int roomId = Integer.parseInt(line.substring(6));
+                            ChatRoom targetRoom = chatRoomService.findChatRoomById(roomId);
+                            if (targetRoom == null) {
+                                out.println("해당 방이 존재하지 않습니다.");
+                                out.flush();
+                            } else {
+                                if (!targetRoom.isPasswordProtected()) {
+                                    chatRoomService.join(roomId, this);
+                                    out.println(targetRoom.getTitle() + " 방에 입장했습니다.");
+                                    out.flush();
+                                    chatRoom.broadcastEnterMessage(nickName);
+                                } else {
+                                    out.println("비밀번호를 입력하세요:");
+                                    out.flush();
+                                    String inputPassword = in.readLine();
+                                    if (targetRoom.checkPassword(inputPassword)) {
+                                        chatRoomService.join(roomId, this);
+                                        out.println(targetRoom.getTitle() + " 방에 입장했습니다.");
+                                        out.flush();
+                                        chatRoom.broadcastEnterMessage(nickName);
+                                    } else {
+                                        out.println("비밀번호가 일치하지 않습니다.");
+                                        out.flush();
+                                        currentRoom = false;
+                                    }
+                                }
+                            }
                         }
                     } catch (Exception e) {
                         currentRoom = false;
                         out.println("방 번호가 잘못 되었습니다.");
                         out.flush();
                     }
-                } else if (line.indexOf("/exit") == 0) {
+                }else if (line.indexOf("/exit") == 0) {
                     if /*(this.chatRoom.chatThreadList == null)*/ (!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
                         out.flush();

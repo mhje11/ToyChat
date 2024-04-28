@@ -8,6 +8,7 @@ import java.util.List;
 public class ChatRoom {
     private int id;
     private String title;
+    private String password;
     protected List<ChatThread> chatThreadList;
     private BufferedWriter logWriter;
 
@@ -21,6 +22,32 @@ public class ChatRoom {
             e.printStackTrace();
         }
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+        public String getPassword() {
+            if (password == null) {
+                return "";
+            }
+            return password;
+
+    }
+
+    public ChatRoom(int id, String title, String password) {
+        this.id = id;
+        this.title = title;
+        this.password = password;
+        chatThreadList = new ArrayList<>();
+        try {
+            this.logWriter = new BufferedWriter(new FileWriter("chatLog/chatroom_" + id + "_log.txt", true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void logMessage(String sender, String message) {
         try {
@@ -89,5 +116,13 @@ public class ChatRoom {
         for (ChatThread chatThread : chatThreadList) {
             chatThread.sendMessage("[시스템] " + message);
         }
+    }
+
+    public boolean isPasswordProtected() {
+        return !password.isEmpty();
+    }
+
+    public boolean checkPassword(String inputPassword) {
+        return password.equals(inputPassword);
     }
 }

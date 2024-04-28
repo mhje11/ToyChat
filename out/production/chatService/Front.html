@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      #app {
+        display: flex;
+        height: 100vh;
+      }
+
+      #sidebar {
+        width: 250px;
+        border-right: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      #chat-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #chat-window {
+        flex-grow: 1;
+        border: 1px solid #ccc;
+        padding: 10px;
+        overflow-y: auto;
+      }
+
+      #input-container {
+        display: flex;
+        padding: 10px;
+      }
+
+      #message-input {
+        flex-grow: 1;
+        padding: 5px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="sidebar">
+        <div id="nickname-container">
+          <input
+            type="text"
+            id="nickname-input"
+            placeholder="Enter your nickname"
+          />
+          <button id="connect-btn">Connect</button>
+        </div>
+        <div id="room-list-container">
+          <h3>Room List</h3>
+          <ul id="room-list"></ul>
+          <input
+            type="text"
+            id="room-name-input"
+            placeholder="Enter room name"
+          />
+          <button id="create-room-btn">Create Room</button>
+        </div>
+        <div id="user-list-container">
+          <h3>User List</h3>
+          <ul id="user-list"></ul>
+        </div>
+      </div>
+      <div id="chat-container">
+        <div id="chat-window"></div>
+        <div id="input-container">
+          <input
+            type="text"
+            id="message-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-btn">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const socket = new WebSocket("ws://localhost:8008");
+      const nicknameInput = document.getElementById("nickname-input");
+      const connectBtn = document.getElementById("connect-btn");
+      const roomList = document.getElementById("room-list");
+      const roomNameInput = document.getElementById("room-name-input");
+      const createRoomBtn = document.getElementById("create-room-btn");
+      const userList = document.getElementById("user-list");
+      const chatWindow = document.getElementById("chat-window");
+      const messageInput = document.getElementById("message-input");
+      const sendBtn = document.getElementById("send-btn");
+
+      let nickname;
+      let currentRoom;
+
+      connectBtn.addEventListener("click", () => {
+        nickname = nicknameInput.value.trim();
+        if (nickname) {
+          socket.send(nickname);
+          nicknameInput.disabled = true;
+          connectBtn.disabled = true;
+        }
+      });
+
+      socket.onopen = () => {
+        console.log("WebSocket connection opened");
+      };
+
+      socket.onmessage = (event) => {
+        const message = event.data;
+        if (message.startsWith("/room-list")) {
+          const rooms = message.substring(11).split(",");
+          roomList.innerHTML = "";
+          rooms.forEach((room) => {
+            const li = document.createElement("li");
+            li.textContent = room;
+            li.addEventListener("click", () => joinRoom(room));
+            roomList.appendChild(li);
+          });
+        } else if (message.startsWith("/user-list")) {
+          const users = message.substring(11).split(",");
+          userList.innerHTML = "";
+          users.forEach((user) => {
+            const li = document.createElement("li");
+            li.textContent = user;
+            userList.appendChild(li);
+          });
+        } else if (message.startsWith("/room-created")) {
+          const roomName = message.substring(14);
+          const li = document.createElement("li");
+          li.textContent = roomName;
+          li.addEventListener("click", () => joinRoom(roomName));
+          roomList.appendChild(li);
+        } else if (message.startsWith("/joined")) {
+          const roomName = message.substring(8);
+          currentRoom = roomName;
+          const messageElement = document.createElement("div");
+          messageElement.textContent = `You joined ${roomName}`;
+          chatWindow.appendChild(messageElement);
+        } else if (message.startsWith("/left")) {
+          currentRoom = null;
+          const messageElement = document.createElement("div");
+          messageElement.textContent = `You left the room`;
+          chatWindow.appendChild(messageElement);
+        } else if (message.startsWith("/enter")) {
+          const user = message.substring(7);
+          const messageElement = document.createElement("div");
+          messageElement.textContent = `${user} entered the room`;
+          chatWindow.appendChild(messageElement);
+        } else if (message.startsWith("/exit")) {
+          const user = message.substring(6);
+          const messageElement = document.createElement("div");
+          messageElement.textContent = `${user} left the room`;
+          chatWindow.appendChild(messageElement);
+        } else if (message.startsWith("/whisper")) {
+          const [_, from, whisperMessage] = message.split(":");
+          const messageElement = document.createElement("div");
+          messageElement.textContent = `${from} whispers: ${whisperMessage}`;
+          chatWindow.appendChild(messageElement);
+        } else {
+          const messageElement = document.createElement("div");
+          messageElement.textContent = message;
+          chatWindow.appendChild(messageElement);
+        }
+      };
+
+      createRoomBtn.addEventListener("click", () => {
+        const roomName = roomNameInput.value.trim();
+        if (roomName) {
+          socket.send(`/create ${roomName}`);
+          roomNameInput.value = "";
+        }
+      });
+
+      function joinRoom(roomName) {
+        socket.send(`/join ${roomName}`);
+      }
+
+      sendBtn.addEventListener("click", () => {
+        const message = messageInput.value.trim();
+        if (message) {
+          if (message.startsWith("/w")) {
+            const [_, targetUser, whisperMessage] = message.split(" ");
+            if (targetUser && whisperMessage) {
+              socket.send(`/whisper ${targetUser}:${whisperMessage}`);
+            } else {
+              const messageElement = document.createElement("div");
+              messageElement.textContent =
+                "Invalid whisper command format. Usage: /w <username> <message>";
+              chatWindow.appendChild(messageElement);
+            }
+          } else if (message === "/exit") {
+            if (currentRoom) {
+              socket.send(message);
+            } else {
+              const messageElement = document.createElement("div");
+              messageElement.textContent =
+                "You are not in a room. Use /join <roomname> to join a room.";
+              chatWindow.appendChild(messageElement);
+            }
+          } else {
+            socket.send(message);
+          }
+          messageInput.value = "";
+        }
+      });
+
+      messageInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          sendBtn.click();
+        }
+      });
+    </script>
+  </body>
+</html>
