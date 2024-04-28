@@ -118,9 +118,10 @@ public class ChatRoom {
         }
     }
 
-    public boolean isPasswordProtected() {
-        return !password.isEmpty();
-    }
+        public boolean isPasswordProtected() {
+            return this.password != null && !this.password.isEmpty();
+        }
+
 
     public boolean checkPassword(String inputPassword) {
         return password.equals(inputPassword);

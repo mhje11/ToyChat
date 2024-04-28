@@ -23,10 +23,12 @@ public class ChatRoomService {
     public String chatRoomList() {
         StringBuilder sb = new StringBuilder();
         for (ChatRoom chatRoom : chatRoomList) {
-            if (!chatRoom.getPassword().isEmpty()) {
-                sb.append("[암호] ");
+            // 방의 암호 유무를 확인하여 암호가 있는 경우 "[암호]"를 추가
+            if (chatRoom.isPasswordProtected()) {
+                sb.append(chatRoom.toString()).append(" [암호]\n");
+            } else {
+                sb.append(chatRoom.toString()).append(" [일반]\n");
             }
-            sb.append(chatRoom.toString()).append('\n');
         }
         return sb.toString();
     }

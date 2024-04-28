@@ -103,7 +103,7 @@ public class ChatThread extends Thread {
                             out.println("방을 생성했습니다.");
                             out.flush();
                         } else {
-                            System.out.println("방 제목을 입력하세요.");
+                            out.println("방 제목을 입력하세요.");
                         }
                     }
                 } else if (line.indexOf("/passwordRoom") == 0) {
