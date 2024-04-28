@@ -14,7 +14,8 @@ public class ChatThread extends Thread {
     private String nickName;
     ChatRoomService chatRoomService;
 
-    public ChatThread(Socket socket, ChatRoomService chatRoomService, Map<String, PrintWriter> userList) throws Exception {
+    public ChatThread(Socket socket, ChatRoomService chatRoomService, Map<String, PrintWriter> userList)
+            throws Exception {
         this.socket = socket;
         this.userList = userList;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -93,8 +94,8 @@ public class ChatThread extends Thread {
                         out.println("이미 방에 입장한 상태입니다. 방을 나가주세요.");
                         out.flush();
                     } else {
-                        currentRoom = true;
                         if (line.length() >= 9) {
+                            currentRoom = true;
                             String title = line.substring(8);
                             ChatRoom chatRoom = chatRoomService.createChatRoom(title);
                             this.chatRoom = chatRoom;
@@ -117,19 +118,21 @@ public class ChatThread extends Thread {
                             out.flush();
                             chatRoom.broadcastEnterMessage(nickName);
                         }
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
+                        currentRoom = false;
                         out.println("방 번호가 잘못 되었습니다.");
                         out.flush();
                     }
                 } else if (line.indexOf("/exit") == 0) {
-                    if /*(this.chatRoom.chatThreadList == null)*/(!currentRoom) {
+                    if /*(this.chatRoom.chatThreadList == null)*/ (!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
+                        out.flush();
                     } else {
                         this.chatRoom.removeChatThread(this);
                         out.println("방에서 퇴장했습니다.");
                         out.flush();
                         chatRoom.broadcastExitMessage(nickName);
+
                         currentRoom = false;
                         if (this.chatRoom.chatThreadList.isEmpty()) {
                             chatRoomService.removeChatRoom(chatRoom);
