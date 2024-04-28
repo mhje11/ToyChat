@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ChatServer {
     public static void main(String[] args) throws Exception {
-        ServerSocket serverSocket = new ServerSocket(1245);
+        ServerSocket serverSocket = new ServerSocket(8008);
         System.out.println("서버가 준비되었습니다.");
         Map<String, PrintWriter> userList = new HashMap<>();
         ChatRoomService chatRoomService = new ChatRoomService();

@@ -7,7 +7,7 @@ import java.net.Socket;
 public class ChatClient {
     public static void main(String[] args) throws Exception {
 
-        Socket socket = new Socket("127.0.0.1", 1245);
+        Socket socket = new Socket("127.0.0.1", 8008);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
@@ -47,7 +47,7 @@ class InputThread extends Thread {
                 System.out.println(line);
             }
         } catch (Exception ex) {
-            System.out.println("...");
+            System.out.println("프로그램을 종료합니다.");
         }
     }
 }

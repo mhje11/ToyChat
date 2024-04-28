@@ -76,7 +76,7 @@ public class ChatThread extends Thread {
             if (chatRoomService.chatRoomList().equals("")) {
                 out.println("생성된 채팅방이 없습니다");
                 out.flush();
-                out.println("/create로 채팅방을 생성 해주세요");
+                out.println("/create 로 채팅방을 생성 해주세요");
                 out.flush();
             } else {
                 out.println(chatRoomService.chatRoomList());
@@ -123,7 +123,7 @@ public class ChatThread extends Thread {
                         out.flush();
                     }
                 } else if (line.indexOf("/exit") == 0) {
-                    if (this.chatRoom.chatThreadList == null) {
+                    if /*(this.chatRoom.chatThreadList == null)*/(!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
                     } else {
                         this.chatRoom.removeChatThread(this);
@@ -139,7 +139,7 @@ public class ChatThread extends Thread {
                     }
                 } else if (line.equalsIgnoreCase("/roomUser")) {
                     roomUserList();
-                } else if (line.equalsIgnoreCase("/UserList")) {
+                } else if (line.equalsIgnoreCase("/userList")) {
                     userList();
                 } else if (line.startsWith("/w")) {
                     StringTokenizer st = new StringTokenizer(line, " ");
@@ -169,6 +169,7 @@ public class ChatThread extends Thread {
                     out.println("/help : 명령어");
                     out.flush();
                     out.println("/w + nickName + message : 귓속말 보내기");
+                    out.flush();
                 } else if (line.indexOf("/list") == 0) {
                     if (chatRoomService.chatRoomList().equals("")) {
                         out.println("존재하는 방이 없습니다.");
