@@ -216,6 +216,8 @@ public class ChatThread extends Thread {
                     out.flush();
                     out.println("/w + nickName + message : 귓속말 보내기");
                     out.flush();
+                    out.println("passwordRoom : 비밀방 생성");
+                    out.flush();
                 } else if (line.indexOf("/list") == 0) {
                     if (chatRoomService.chatRoomList().equals("")) {
                         out.println("존재하는 방이 없습니다.");
