@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class ChatClient {
@@ -27,6 +24,16 @@ public class ChatClient {
         } catch (Exception ex) {
             System.out.println("...");
         }
+    }
+
+    public static String getInput() {
+        String input = null;
+        try(BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));) {
+            input = keyboard.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    return input;
     }
 }
 

@@ -1,7 +1,6 @@
 import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -11,8 +10,13 @@ public class ChatThread extends Thread {
     private PrintWriter out;
     private Socket socket;
     private Map<String, PrintWriter> userList = new HashMap<>();
+    private Map<String, ChatThread> userThreadList = new HashMap<>();
     private String nickName;
     ChatRoomService chatRoomService;
+
+    public String getNickName() {
+        return nickName;
+    }
 
     public ChatThread(Socket socket, ChatRoomService chatRoomService, Map<String, PrintWriter> userList)
             throws Exception {
@@ -31,10 +35,11 @@ public class ChatThread extends Thread {
             }
         }
         this.chatRoomService = chatRoomService;
+
         synchronized (userList) {
             userList.put(this.nickName, out);
-
         }
+
     }
 
     public ChatRoom getChatRoom() {
@@ -108,6 +113,7 @@ public class ChatThread extends Thread {
                     }
                 } else if (line.indexOf("/passwordRoom") == 0) {
                     try {
+                        currentRoom = true;
                         out.println("비밀방을 생성합니다. 방 제목과 암호를 입력하세요.");
                         out.flush();
 
@@ -166,8 +172,30 @@ public class ChatThread extends Thread {
                         out.println("방 번호가 잘못 되었습니다.");
                         out.flush();
                     }
-                }else if (line.indexOf("/exit") == 0) {
-                    if /*(this.chatRoom.chatThreadList == null)*/ (!currentRoom) {
+                } else if (line.equals("/invite")) {
+                    if (currentRoom) {
+                        userList();
+                        out.println("초대할 유저를 입력해주세요.");
+                        String userName = in.readLine();
+                        if (userList.containsKey(userName)) {
+                            invite(nickName, userName);
+                            String response = userThreadList.get(userName).in.readLine();
+                            if (response.equalsIgnoreCase("yes")) {
+                                userList.get(userName).println("초대를 수락했습니다 방에 입장합니다.");
+                                chatRoomService.join(this.chatRoom.getId(), chatRoom.getChatThread(userName));
+                                this.chatRoom.broadcastEnterMessage(userName);
+                            }else {
+                                out.println(userName + "님이 초대를 거부했습니다.");
+                            }
+                        } else {
+                            out.println("해당 유저가 존재하지 않습니다.");
+                        }
+                    } else {
+                        out.println("방을 먼저 생성해주세요.");
+                    }
+
+                } else if (line.indexOf("/exit") == 0) {
+                    if (!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
                         out.flush();
                     } else {
@@ -245,27 +273,38 @@ public class ChatThread extends Thread {
         }
     }
 
-    public void setChatRoom(ChatRoom chatRoom) {
+    private void invite(String nickName, String targetUser) {
+        PrintWriter targetOut = userList.get(targetUser);
+        PrintWriter idOut = userList.get(nickName);
+        if (targetUser.equals(nickName)) {
+            targetOut.println("자기자신에게 초대 할 수 없습니다.");
+            targetOut.flush();
+            return;
+        } else {
+            targetOut.println(nickName + "님의 초대가 왔습니다. 수락하시겠습니까? (yes/no)");
+        }
+
+    } public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
     }
 
-    public void whisper(String id, String targetUser, String message) {
+    public void whisper(String nickName, String targetUser, String message) {
 
         PrintWriter targetOut = userList.get(targetUser); // 목적지 사용자의 출력 스트림 가져오기
-        PrintWriter idOut = userList.get(id);
-        if (targetUser.equals(id)) {
+        PrintWriter idOut = userList.get(nickName);
+        if (targetUser.equals(nickName)) {
             targetOut.println("자기자신에게 귓속말을 할 수 없습니다");
             targetOut.flush();
             return;
         }
         if (targetOut != null) {
-            targetOut.println(id + "님의 귓속말: " + message); // 목적지 사용자에게 메시지 전송
+            targetOut.println(nickName + "님의 귓속말: " + message); // 목적지 사용자에게 메시지 전송
             targetOut.flush();
-            idOut.println(id + " >>> " + targetUser + " : " + message);
+            idOut.println(nickName + " >>> " + targetUser + " : " + message);
             idOut.flush();
         } else {
             // 목적지 사용자가 없는 경우 메시지를 보낼 수 없음을 알림
-            userList.get(id).println("귓속말을 보낼 사용자 '" + targetUser + "'를 찾을 수 없습니다.");
+            userList.get(nickName).println("귓속말을 보낼 사용자 '" + targetUser + "'를 찾을 수 없습니다.");
         }
     }
 }

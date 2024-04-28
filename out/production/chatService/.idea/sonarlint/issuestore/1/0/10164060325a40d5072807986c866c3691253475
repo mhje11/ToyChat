@@ -1,29 +1,22 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(½•ƒàıÿÿÿÿ8–ø—Áñ1J$66e8ce3c-1f00-46df-b777-ba0239054214
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ8ÜôÏšò1J$2e47df85-647c-4987-8c4d-831332a87493
 }
-java:S11417"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ãç£Áñ1J$103ad4a2-d2ac-4822-9e6e-b1a292585c14
+java:S1141n"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßôÏšò1J$8b34bf78-4e95-4cde-b438-f63c0da430ff
 ]
-java:S1220""Move this file to a named package.8›ø—Áñ1J$0953d5b4-1f85-4b96-b8e8-1efd5782e9b2
-
-java:S2259?"FA "NullPointerException" could be thrown; "chatRoom" is nullable here.(µí°…şÿÿÿÿ8®Ñ³Áñ1J$16072f76-4f3c-4923-8992-c718b2418451
-~
-java:S1117"6Rename "in" which hides the field declared at line 11.(ÜÜ³¹ùÿÿÿÿ8ºÑ³Áñ1J$e0c2b5db-2b17-4d18-9041-6a7553e8add6
-z
-java:S1117"7Rename "out" which hides the field declared at line 12.(üÎÖÌ8’ø¾Áñ1J$aaadc3ef-246f-4066-bb85-f71603a8ae81
-m	java:S106"+Replace this use of System.out by a logger.(æ…‰­8Ñø—Áñ1J$835628dd-6916-4162-9275-cf49a9ef69d7
+java:S1220""Move this file to a named package.8àôÏšò1J$82072558-effd-402b-b294-7199661815f9
 •
-java:S3776!"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(“–ış8…è£Áñ1J$30a7ba84-0d58-46ee-8802-581e195a823f
-m	java:S106""+Replace this use of System.out by a logger.(›Éƒ8Ôø—Áñ1J$3bacdd4e-af10-4ef0-9c1e-086a589a3e58
-X	java:S125'"<This block of commented-out lines of code should be removed.(¬­Í»8ëµÂñ1
+java:S2445""M"userList" is a method parameter, and should not be used for synchronization.(ñøÂûÿÿÿÿ8ñôÏšò1J$46ff49a0-3e71-4fd2-8cdc-d4d449169f6e
+l	java:S106D"+Replace this use of System.out by a logger.(‚š‰18ôôÏšò1J$fed302e7-3df9-4dd7-a503-eded5dbc3d95
+•
+java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(“–ış8öôÏšò1J$235c9bcd-0f4b-441f-b79f-f60da462c49a
 ~
-java:S1117/";Rename "chatRoom" which hides the field declared at line 9.(ß®ÿ”8Œè£Áñ1J$3d3c5fe7-d068-4000-92db-bcf0f29945e9
-r	java:S1063"+Replace this use of System.out by a logger.(¬¹¾Õşÿÿÿÿ8Œè£Áñ1J$916065a8-167d-4db9-8da3-a780d059db1c
-m	java:S106K"+Replace this use of System.out by a logger.(—™àù8è£Áñ1J$af9eaddb-df2b-4bb2-a2ca-38f9ff1f6991
-m	java:S106O"+Replace this use of System.out by a logger.(Œ°É§8è£Áñ1J$72a45c0f-6cc1-4fc6-b986-d90536d88c0d
-_
-java:S1116S"Remove this empty statement.(¾×ıÓ8Øø—Áñ1J$e36f5362-a2bf-4447-b5f4-f749d5317edc
-k
-java:S1068
-"(Remove this unused "name" private field.(Ë¥¼8Úø—Áñ1J$0e629e1f-a06a-4a6f-a95b-82274a116b8f
+java:S1117d";Rename "chatRoom" which hides the field declared at line 9.(ß®ÿ”8úôÏšò1J$591bd89f-cce5-4703-814b-023660eed073
+r	java:S106j"+Replace this use of System.out by a logger.(¬¹¾Õşÿÿÿÿ8úôÏšò1J$d4d58d50-7678-41b3-893d-86ff46208add
+s	java:S106‹"+Replace this use of System.out by a logger.(‚ôïÈşÿÿÿÿ8üôÏšò1J$d62985e4-e777-49b2-bc65-79620b1a6af7
 r
-java:S1068"*Remove this unused "socket" private field.(Å’¬Úşÿÿÿÿ8Úø—Áñ1J$1b39edcd-4293-46cf-b605-f17bac70b190
+java:S1481•")Remove this unused "head" local variable.(ì–ä“øÿÿÿÿ8şôÏšò1J$c02f6a77-34ae-4f74-a8cf-9f7e88e79e00
+n	java:S106·"+Replace this use of System.out by a logger.(—™àù8õÏšò1J$3bcf3d1c-3542-4f1a-b3c1-a92c6960211f
+L
+java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8üÃÒšò1
+Š
+java:S6541J"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 127 to 64, Complexity from 20 to 14, Nesting Level from 5 to 2, Number of Variables from 11 to 6.(“–ış8…õÏšò1J$7ccc7e6a-60af-45c1-a1c9-e20c4be18dd3

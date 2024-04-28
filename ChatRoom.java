@@ -33,7 +33,6 @@ public class ChatRoom {
                 return "";
             }
             return password;
-
     }
 
     public ChatRoom(int id, String title, String password) {
@@ -72,6 +71,15 @@ public class ChatRoom {
 
     public void removeChatThread(ChatThread chatThread) {
         chatThreadList.remove(chatThread);
+    }
+
+    public ChatThread getChatThread(String nickName) {
+        for (ChatThread thread : chatThreadList) {
+            if (thread.getNickName().equals(nickName)) {
+                return thread;
+            }
+        }
+        return null;
     }
 
     public int getId() {

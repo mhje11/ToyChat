@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class ChatRoomService {
 
     private static int GEN_ID = 1;
     private List<ChatRoom> chatRoomList;
+
 
     public ChatRoomService() {
         this.chatRoomList = new ArrayList<>();
