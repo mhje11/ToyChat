@@ -120,7 +120,7 @@ public class ChatThread extends Thread {
                             out.println("방 제목을 입력하세요.");
                         }
                     }
-                } else if (line.indexOf("/passwordRoom") == 0) {
+                } else if (line.equalsIgnoreCase("/passwordRoom")) {
                     try {
                         currentRoom = true;
                         out.println("비밀방을 생성합니다. 방 제목과 암호를 입력하세요.");
@@ -179,7 +179,7 @@ public class ChatThread extends Thread {
                         out.println("방 번호가 잘못 되었습니다.");
                         out.flush();
                     }
-                } else if (line.equals("/invite")) {
+                } else if (line.equalsIgnoreCase("/invite")) {
                     if (currentRoom) {
                         userList();
                         out.println("초대할 유저를 입력해주세요.");
@@ -203,7 +203,7 @@ public class ChatThread extends Thread {
                     } else {
                         out.println("방을 먼저 생성해주세요.");
                     }
-                } else if (line.indexOf("/exit") == 0) {
+                } else if (line.equalsIgnoreCase("/exit")) {
                     if (!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
                         out.flush();
