@@ -3,35 +3,45 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
 public class ChatThread extends Thread {
     protected String acceptUserName = null;
+
     public void setAcceptUserName(String acceptUserName) {
         this.acceptUserName = acceptUserName;
     }
+
     private ChatRoom chatRoom;
     private BufferedReader in;
     private PrintWriter out;
     private Socket socket;
     private Map<String, PrintWriter> userList = new HashMap<>();
     private int inviteRoomId;
+
     public int getInviteRoomId() {
         return inviteRoomId;
     }
+
     public void setInviteRoomId(int inviteRoomId) {
         this.inviteRoomId = inviteRoomId;
     }
+
     private String nickName;
     ChatRoomService chatRoomService;
     private boolean currentRoom;
+
     public String getNickName() {
         return nickName;
     }
+
     public boolean getCurrentRoom() {
         return currentRoom;
     }
+
     public void setCurrentRoom(boolean currentRoom) {
         this.currentRoom = currentRoom;
     }
+
     public ChatThread(Socket socket, ChatRoomService chatRoomService, Map<String, PrintWriter> userList)
             throws Exception {
         this.socket = socket;
@@ -55,9 +65,11 @@ public class ChatThread extends Thread {
         }
 
     }
+
     public ChatRoom getChatRoom() {
         return chatRoom;
     }
+
     public void userList() {
         StringBuilder sb = new StringBuilder("접속한 유저 목록:\n");
         for (String username : userList.keySet()) {
@@ -66,6 +78,7 @@ public class ChatThread extends Thread {
         out.println(sb.toString());
         out.flush();
     }
+
     public void roomUserList() {
         if (chatRoom == null) {
             out.println("방에 속해있지 않습니다.");
@@ -79,11 +92,13 @@ public class ChatThread extends Thread {
         out.println(sb.toString());
         out.flush();
     }
+
     public void sendMessage(String msg) {
         System.out.println(msg);
         out.println(msg);
         out.flush();
     }
+
     @Override
     public void run() {
         try {
@@ -295,31 +310,18 @@ public class ChatThread extends Thread {
 
     private void help() {
         out.println("/create : 방 생성");
-        out.flush();
         out.println("/join + roomID: roomID 방에 접속");
-        out.flush();
         out.println("/quit : 클라이언트 종료");
-        out.flush();
         out.println("/roomUser : 같은 방에 있는 유저 리스트 조회");
-        out.flush();
         out.println("/userList : 클라이언트에 접속한 유저 리스트 조회");
-        out.flush();
         out.println("/exit : 방 나가기");
-        out.flush();
         out.println("/list : 생성된 방의 리스트 조회");
-        out.flush();
         out.println("/help : 명령어");
-        out.flush();
         out.println("/w + nickName + message : 귓속말 보내기");
-        out.flush();
         out.println("passwordRoom : 비밀방 생성");
-        out.flush();
         out.println("/invite : 유저 초대하기");
-        out.flush();
         out.println("/accept : 초대 수락");
-        out.flush();
         out.println("/decline : 초대 거부");
-        out.flush();
     }
 
     private void list() {
@@ -368,6 +370,7 @@ public class ChatThread extends Thread {
     public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
     }
+
     public void whisper(String nickName, String targetUser, String message) {
         PrintWriter targetOut = userList.get(targetUser);
         PrintWriter idOut = userList.get(nickName);
