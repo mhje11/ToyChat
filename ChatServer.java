@@ -17,9 +17,9 @@ public class ChatServer {
         while(true) {
             Socket socket = serverSocket.accept();
             ChatThread chatThread = new ChatThread(socket, chatRoomService, userList);
-            System.out.println("접속 : " + chatThread.getNickName());
             userThreadMap.put(chatThread.getNickName(), chatThread);
             chatThread.start();
+            System.out.println("접속 : " + chatThread.getNickName());
         }
     }
     public static Map getUserThreadMap() {
