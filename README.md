@@ -78,21 +78,21 @@
 ### 1. 중복 닉네임 방지
 
 - 서버는 중복되지 않는 닉네임만 허용합니다. 이미 사용 중인 닉네임을 입력하면 경고 메시지를 보내고 다른 닉네임을 요구합니다.
-  > ![img.png](img.png)
+  > ![img.png](readme/img_1.png)
 
 ### 2. 사용자 및 방 관련 정보 제공
 
 - "/userList" 명령으로 현재 접속 중인 모든 사용자의 목록을 볼 수 있습니다.
 - "/roomUser" 명령으로 현재 방에 있는 모든 사용자의 목록을 확인할 수 있습니다.
-> ![img_1.png](img_1.png) ![img_6.png](img_6.png)
+> ![img_1.png](readme/img_1.png) ![img_6.png](readme/img_6.png)
 
 ### 3. 귓속말 기능
 
 - "/w [닉네임] [메시지]" 명령을 사용하여 특정 사용자에게만 메시지를 전송할 수 있습니다. 방 내에서도 같은 명령을 사용하여 특정
 닉네임에게만 메시지를 보낼 수 있습니다.
-> ![img_4.png](img_4.png) </br> </br>
+> ![img_4.png](readme/img_4.png) </br> </br>
 > 귓속말을 받은 User2의 사용자 </br> 
-> ![img_5.png](img_5.png)
+> ![img_5.png](readme/img_5.png)
 
 ### 4. 채팅 내역 저장 기능
 
@@ -102,21 +102,21 @@
 
 - 채팅방 안에서 invite 를 입력하여 채팅방 초대가 가능합니다.
 - 초대 받은 사람은 /accept 또는 /decline을 통해 채팅방 입장 또는 거절이 가능합니다.
-> ![img_7.png](img_7.png) </br> </br>
+> ![img_7.png]readme/(img_7.png) </br> </br>
 > 초대를 받은 사용자의 창 </br>
-> ![img_8.png](img_8.png)
+> ![img_8.png](readme/img_8.png)
 
 ### 6. 비밀방 생성
 
 - /passwordRoom을 통해서 사용자가 비밀방을 만들어 일반 사용자가 들어올 수 없게 채팅방을 만듭니다.
   입력할 수 있는 커맨드 라인이 뜨고 방 이름과 패스워드 이름을 순차적으로 적으면 비밀방이 만들어집니다.
-> ![img_9.png](img_9.png) </br> </br>
+> ![img_9.png](readme/img_9.png) </br> </br>
 > 생성된 후 /roomlist를 통해 방의 정보를 확인 가능 </br>
-> ![img_10.png](img_10.png) </br> </br>
+> ![img_10.png](readme/img_10.png) </br> </br>
 > 비밀번호를 입력해서 채팅방에 들어가야함 </br>
-> ![img_11.png](img_11.png)
+> ![img_11.png](readme/img_11.png)
 
 ### 7. 방 리스트 확인
 
 > /list 를 통해 현재 만들어져 있는 채팅방을 확인할 수 있습니다. </br>
-> ![img_12.png](img_12.png)
+> ![img_12.png](readme/img_12.png)
