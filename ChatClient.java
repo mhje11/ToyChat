@@ -26,15 +26,6 @@ public class ChatClient {
         }
     }
 
-    public static String getInput() {
-        String input = null;
-        try(BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));) {
-            input = keyboard.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    return input;
-    }
 }
 
 class InputThread extends Thread {

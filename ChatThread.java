@@ -359,9 +359,6 @@ public class ChatThread extends Thread {
         }
     }
 
-    private BufferedReader getInputStream() {
-        return in;
-    }
     public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
     }

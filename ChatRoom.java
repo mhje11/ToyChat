@@ -23,17 +23,6 @@ public class ChatRoom {
         }
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-        public String getPassword() {
-            if (password == null) {
-                return "";
-            }
-            return password;
-    }
 
     public ChatRoom(int id, String title, String password) {
         this.id = id;
@@ -73,30 +62,16 @@ public class ChatRoom {
         chatThreadList.remove(chatThread);
     }
 
-    public ChatThread getChatThread(String nickName) {
-        for (ChatThread thread : chatThreadList) {
-            if (thread.getNickName().equals(nickName)) {
-                return thread;
-            }
-        }
-        return null;
-    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     @Override
     public String toString() {
