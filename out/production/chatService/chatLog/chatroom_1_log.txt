@@ -28,3 +28,4 @@ Mon Apr 29 11:38:38 KST 2024 | man2: dd
 Mon Apr 29 11:38:56 KST 2024 | man2: 
 Mon Apr 29 11:39:00 KST 2024 | man1: d
 Mon Apr 29 11:40:35 KST 2024 | man3: d
+Mon Apr 29 13:26:17 KST 2024 | man1: invite

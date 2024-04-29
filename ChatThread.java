@@ -341,6 +341,7 @@ public class ChatThread extends Thread {
             if (targetThread != null) {
                 if (targetThread.getCurrentRoom()) {
                     targetOut.println("이미 다른 방에 속해 있습니다. 초대를 수락하려면 먼저 해당 방에서 나가주세요.");
+                    setAcceptUserName(null);
                     targetOut.flush();
                 } else {
                     targetThread.setCurrentRoom(true);
