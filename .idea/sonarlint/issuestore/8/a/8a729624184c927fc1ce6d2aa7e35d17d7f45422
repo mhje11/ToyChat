@@ -1,10 +1,11 @@
 
+r
+java:S3740"/Provide the parametrized type for this generic.(¿©Ë•8ÏÕİ¼ò1J$0f7d81a3-d8b8-4b92-bb37-755df9565c6e
 ]
-java:S1220""Move this file to a named package.8ÏãÇÀñ1J$cf27f8f7-9b90-4afe-a087-b0eb75559e00
+java:S1220""Move this file to a named package.8ÑÕİ¼ò1J$7019d3ae-d95e-47a4-8602-58015b54740e
 ’
-java:S2095	"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(µ›´•ÿÿÿÿÿ8 ù°Éñ1J$7e1a3b9f-4441-4cb1-a57a-ce440c5522f1
+java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(µ›´•ÿÿÿÿÿ8çÕİ¼ò1J$db3d8703-7d8c-4030-9027-70b8272390da
 j
-java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8ŸÏÂÁñ1J$2084d9ca-d2cd-42c2-8587-e40860d40a1e
-r	java:S106
-"+Replace this use of System.out by a logger.(ø—‘üÿÿÿÿ8©ù°Éñ1J$73f3a23b-0eab-459d-9bc4-118242ee0924
-m	java:S106"+Replace this use of System.out by a logger.(ÌÚôó8®ù°Éñ1J$07d060ce-66a5-4a35-8581-7767a6fc9463
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8èÕİ¼ò1J$a8f2b9b2-a800-46fc-9cd1-c23274b831a7
+r	java:S106"+Replace this use of System.out by a logger.(ø—‘üÿÿÿÿ8ğÕİ¼ò1J$24f6d71b-eef9-4151-a902-a00bb3975acc
+r	java:S106"+Replace this use of System.out by a logger.(è·ä¹úÿÿÿÿ8øÇ¥¾ò1J$540fede5-ee74-4517-adc6-38028ea31eb9
