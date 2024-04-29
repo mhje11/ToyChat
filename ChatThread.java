@@ -102,6 +102,12 @@ public class ChatThread extends Thread {
             String line = null;
             while ((line = in.readLine()) != null) {
                 if ("/quit".equals(line)) {
+                    if (currentRoom) {
+                        this.chatRoom.removeChatThread(this);
+                        out.println("방에서 퇴장했습니다.");
+                        out.flush();
+                        chatRoom.broadcastExitMessage(nickName);
+                    }
                     break;
                 } else if (line.indexOf("/create") == 0) {
                     createRoom(line);
@@ -143,7 +149,7 @@ public class ChatThread extends Thread {
                     System.out.println("속한 방에 브로드캐스트 합니다." + line);
                     chatRoom.broadcast(nickName, line);
                 } else {
-                    out.println("속한 채팅 방이 없습니다. ");
+                    out.println("속한 채팅 방이 없습니다.");
                 }
             }
         } catch (Exception e) {

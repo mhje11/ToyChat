@@ -18,7 +18,7 @@ public class ChatRoom {
         this.id = id;
         try {
             this.logWriter = new BufferedWriter(new FileWriter("chatLog/chatroom_" + id + "_log.txt", true));
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

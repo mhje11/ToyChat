@@ -30,3 +30,5 @@ Mon Apr 29 11:39:00 KST 2024 | man1: d
 Mon Apr 29 11:40:35 KST 2024 | man3: d
 Mon Apr 29 13:26:17 KST 2024 | man1: invite
 Mon Apr 29 13:27:45 KST 2024 | man1: /invite man2
+Mon Apr 29 13:49:32 KST 2024 | man1: dd
+Mon Apr 29 13:49:42 KST 2024 | man2: dd

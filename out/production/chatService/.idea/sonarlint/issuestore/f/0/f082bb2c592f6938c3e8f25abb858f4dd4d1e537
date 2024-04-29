@@ -1,11 +1,13 @@
 
 ]
-java:S1220""Move this file to a named package.8Ç‚Âñ1J$c8472252-3889-432f-b210-c4aa6f2462d2
+java:S1220""Move this file to a named package.8ı’Óœò1J$c09a577d-05d9-452c-b83d-a7b8813b8fda
 ™
-java:S3008"QRename this field "GEN_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ˆšùÿÿÿÿ8Ò‚Âñ1J$74686db1-2ab5-4e73-91fb-767e05404435
-m	java:S106"+Replace this use of System.out by a logger.(Ü¶şã8×‚Âñ1J$395d721f-b8d5-4628-a53c-fb9e390ff1b5
-m	java:S106"+Replace this use of System.out by a logger.(Ù«õ±8Ø‚Âñ1J$7375b290-4c76-405c-a563-113a003dc951
+java:S3008"QRename this field "GEN_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ˆšùÿÿÿÿ8õ´ü¹ò1J$abc98cf1-d99f-4033-ad00-50fd74e5efb5
+m	java:S106"+Replace this use of System.out by a logger.(Ü¶şã8ĞÅÃ¡ò1J$15179497-1dae-468d-9de6-bd05238144a7
+m	java:S106"+Replace this use of System.out by a logger.(Ù«õ±8ĞÅÃ¡ò1J$00bc0a4f-9cb6-476d-b6a0-79d300952914
 ~
-java:S2696"6Make the enclosing method "static" or remove this set.(œÙ¼Úıÿÿÿÿ8Ø‚Âñ1J$a055c039-04fb-4b7e-bd50-e38d4bb737eb
-r
-java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8¹Á™ò1J$a2a32f8f-a2fc-4f69-8e73-0b8db6bbc12e
+java:S2696"6Make the enclosing method "static" or remove this set.(œÙ¼Úıÿÿÿÿ8ÑÅÃ¡ò1J$dc5467ba-10de-474c-9208-ebfe9169baa2
+r	java:S106-"+Replace this use of System.out by a logger.(¸Ñéıÿÿÿÿ8Áıó¹ò1J$c754ad51-129e-4e9e-a22a-25057e9a4541
+r	java:S106/"+Replace this use of System.out by a logger.(¿ê‡šşÿÿÿÿ8Âıó¹ò1J$6446b559-aac0-4e5a-b6ac-26d7082d4d63
+~
+java:S26960"6Make the enclosing method "static" or remove this set.(œÙ¼Úıÿÿÿÿ8Âıó¹ò1J$dc8df8a0-fc9f-466e-a504-b41e3d15df37

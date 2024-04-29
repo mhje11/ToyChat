@@ -1,22 +1,24 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ8ÜôÏšò1J$2e47df85-647c-4987-8c4d-831332a87493
-}
-java:S1141n"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßôÏšò1J$8b34bf78-4e95-4cde-b438-f63c0da430ff
+	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ8ÍÀ¥¾ò1J$fc1dab4c-ee09-4dcf-8dfc-ca993bd6e3ed
+«
+java:S1192É"bDefine a constant instead of duplicating this literal "ì´ˆëŒ€ë¥¼ ë°›ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤." 3 times.(ƒùÀÿÿÿÿÿ8öÏâÀò1J$0178aae4-0992-45a3-86be-d7aeb44be307
+›	java:S135g"YReduce the total number of break and continue statements in this loop to use at most one.(‘Æìó8ÛÀ¥¾ò1J$2edc2821-483d-41e7-a2d8-7739f6d2c039
 ]
-java:S1220""Move this file to a named package.8àôÏšò1J$82072558-effd-402b-b294-7199661815f9
+java:S1220""Move this file to a named package.8ûÌİ¼ò1J$026b8935-77e7-471e-86fc-919bdb035cd0
 •
-java:S2445""M"userList" is a method parameter, and should not be used for synchronization.(ñøÂûÿÿÿÿ8ñôÏšò1J$46ff49a0-3e71-4fd2-8cdc-d4d449169f6e
-l	java:S106D"+Replace this use of System.out by a logger.(‚š‰18ôôÏšò1J$fed302e7-3df9-4dd7-a503-eded5dbc3d95
+java:S24455"M"userList" is a method parameter, and should not be used for synchronization.(ñøÂûÿÿÿÿ8ÔÅ¥¾ò1J$3e22470d-f2aa-474b-a245-a68409b24e9d
+l	java:S106S"+Replace this use of System.out by a logger.(‚š‰18ŞÅ¥¾ò1J$73067d91-148e-4cfc-a279-5c10b6b18396
 •
-java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(“–ış8öôÏšò1J$235c9bcd-0f4b-441f-b79f-f60da462c49a
-~
-java:S1117d";Rename "chatRoom" which hides the field declared at line 9.(ß®ÿ”8úôÏšò1J$591bd89f-cce5-4703-814b-023660eed073
-r	java:S106j"+Replace this use of System.out by a logger.(¬¹¾Õşÿÿÿÿ8úôÏšò1J$d4d58d50-7678-41b3-893d-86ff46208add
-s	java:S106‹"+Replace this use of System.out by a logger.(‚ôïÈşÿÿÿÿ8üôÏšò1J$d62985e4-e777-49b2-bc65-79620b1a6af7
-r
-java:S1481•")Remove this unused "head" local variable.(ì–ä“øÿÿÿÿ8şôÏšò1J$c02f6a77-34ae-4f74-a8cf-9f7e88e79e00
-n	java:S106·"+Replace this use of System.out by a logger.(—™àù8õÏšò1J$3bcf3d1c-3542-4f1a-b3c1-a92c6960211f
-L
-java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8üÃÒšò1
-Š
-java:S6541J"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 127 to 64, Complexity from 20 to 14, Nesting Level from 5 to 2, Number of Variables from 11 to 6.(“–ış8…õÏšò1J$7ccc7e6a-60af-45c1-a1c9-e20c4be18dd3
+java:S3776X"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(“–ış8æÅ¥¾ò1J$04fd3ebc-3710-4580-8622-ad396e1adccd
+^
+java:S3626‹"Remove this redundant jump.(öÎÛ8…ÙâÀò1J$3870831a-b44b-48c2-8adc-e5bd0391ee78
+q
+java:S1481z")Remove this unused "head" local variable.(ì–ä“øÿÿÿÿ8ÙâÀò1J$950f8392-1c9e-4d5b-b0ea-206cf962e165
+n	java:S106"+Replace this use of System.out by a logger.(—™àù8¢ÙâÀò1J$4dd989ed-61e0-498f-affe-9097a639da87
+€
+java:S1117«"<Rename "chatRoom" which hides the field declared at line 11.(ß®ÿ”8ªÙâÀò1J$1778a518-2fbc-4f9f-82d3-349201522baf
+ 
+java:S2177"WRename this method; there is a "private" method in the parent class with the same name.(úş‡ şÿÿÿÿ8ŞÙâÀò1J$f09570de-e061-4964-bba2-109a1ecfff5f
+s	java:S106œ"+Replace this use of System.out by a logger.(‚ôïÈşÿÿÿÿ8äÙâÀò1J$d74c6885-7e24-4011-880c-8a68fe08deef
+ˆ
+java:S6541X"ÄA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 74 to 64, Complexity from 20 to 14, Nesting Level from 4 to 2, Number of Variables from 7 to 6.(“–ış8ÿÇ¥¾ò1J$ba203eee-5374-4bbd-a0a3-cc11c4d636bc
