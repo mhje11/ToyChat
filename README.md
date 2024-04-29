@@ -102,7 +102,7 @@
 
 - 채팅방 안에서 invite 를 입력하여 채팅방 초대가 가능합니다.
 - 초대 받은 사람은 /accept 또는 /decline을 통해 채팅방 입장 또는 거절이 가능합니다.
-> ![img_7.png]readme/(img_7.png) </br> </br>
+> ![img_7.png](readme/img_7.png) </br> </br>
 > 초대를 받은 사용자의 창 </br>
 > ![img_8.png](readme/img_8.png)
 
