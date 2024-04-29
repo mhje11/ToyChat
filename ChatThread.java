@@ -10,12 +10,21 @@ public class ChatThread extends Thread {
     private PrintWriter out;
     private Socket socket;
     private Map<String, PrintWriter> userList = new HashMap<>();
-    private Map<String, ChatThread> userThreadList = new HashMap<>();
+
     private String nickName;
     ChatRoomService chatRoomService;
+    private boolean currentRoom;
 
     public String getNickName() {
         return nickName;
+    }
+
+    public boolean getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(boolean currentRoom) {
+        this.currentRoom = currentRoom;
     }
 
     public ChatThread(Socket socket, ChatRoomService chatRoomService, Map<String, PrintWriter> userList)
@@ -41,6 +50,7 @@ public class ChatThread extends Thread {
         }
 
     }
+
 
     public ChatRoom getChatRoom() {
         return chatRoom;
@@ -78,7 +88,7 @@ public class ChatThread extends Thread {
     @Override
     public void run() {
         try {
-            boolean currentRoom = false;
+            currentRoom = false;
             if (chatRoomService.chatRoomList().equals("")) {
                 out.println("생성된 채팅방이 없습니다");
                 out.flush();
@@ -173,28 +183,57 @@ public class ChatThread extends Thread {
                         out.flush();
                     }
                 } else if (line.equals("/invite")) {
-                    if (currentRoom) {
-                        userList();
-                        out.println("초대할 유저를 입력해주세요.");
-                        String userName = in.readLine();
-                        if (userList.containsKey(userName)) {
-                            invite(nickName, userName);
-                            String response = userThreadList.get(userName).in.readLine();
-                            if (response.equalsIgnoreCase("yes")) {
-                                userList.get(userName).println("초대를 수락했습니다 방에 입장합니다.");
-                                chatRoomService.join(this.chatRoom.getId(), chatRoom.getChatThread(userName));
-                                this.chatRoom.broadcastEnterMessage(userName);
-                            }else {
-                                out.println(userName + "님이 초대를 거부했습니다.");
-                            }
+                if (currentRoom) {
+                    userList();
+                    out.println("초대할 유저를 입력해주세요.");
+                    String userName = this.in.readLine();
+                    if (userList.containsKey(userName)) {
+                        PrintWriter targetOut = userList.get(userName);
+                        if (userName.equals(nickName)) {
+                            out.println("자기자신에게 초대 할 수 없습니다.");
+                            out.flush();
                         } else {
-                            out.println("해당 유저가 존재하지 않습니다.");
+                            targetOut.println(nickName + "님의 초대가 왔습니다. 수락하시겠습니까? (yes/no)");
+                            targetOut.flush();
+                            ChatThread targetThread = (ChatThread) ChatServer.getUserThreadMap().get(userName);
+                            if (targetThread != null) {
+                                if (targetThread.getCurrentRoom()) {
+                                    targetOut.println("이미 다른 방에 속해 있습니다. 초대를 수락하려면 먼저 해당 방에서 나가주세요.");
+                                    targetOut.flush();
+                                    out.println("해당 유저가 이미 방에 속해있습니다.");
+                                    out.flush();
+                                } else {
+                                    targetThread.setCurrentRoom(true);
+                                        String response = targetThread.getInputStream().readLine();
+                                        if (response.equalsIgnoreCase("yes")) {
+                                            chatRoomService.join(this.getChatRoom().getId(), targetThread);
+                                            targetOut.println("초대를 수락했습니다. 방에 입장합니다.");
+                                            targetOut.flush();
+                                            this.chatRoom.broadcastEnterMessage(nickName);
+                                        } else if (response.equalsIgnoreCase("no")){
+                                            targetOut.println("초대를 거부했습니다.");
+                                            targetOut.flush();
+                                            out.println("초대를 거부했습니다.");
+                                            out.flush();
+                                            targetThread.setCurrentRoom(false);
+                                        } else {
+                                            targetOut.println("잘못된 입력입니다.");
+                                            targetOut.flush();
+                                        }
+                                }
+                            } else {
+                                out.println("해당 사용자가 존재하지 않습니다.");
+                                out.flush();
+                            }
                         }
                     } else {
-                        out.println("방을 먼저 생성해주세요.");
+                        out.println("해당 유저가 존재하지 않습니다.");
                     }
-
-                } else if (line.indexOf("/exit") == 0) {
+                } else {
+                    out.println("방을 먼저 생성해주세요.");
+                }
+            }
+            else if (line.indexOf("/exit") == 0) {
                     if (!currentRoom) {
                         out.println("방에 속해있지 않습니다. 프로그램 종료는 /quit 를 입력해주세요");
                         out.flush();
@@ -273,24 +312,17 @@ public class ChatThread extends Thread {
         }
     }
 
-    private void invite(String nickName, String targetUser) {
-        PrintWriter targetOut = userList.get(targetUser);
-        PrintWriter idOut = userList.get(nickName);
-        if (targetUser.equals(nickName)) {
-            targetOut.println("자기자신에게 초대 할 수 없습니다.");
-            targetOut.flush();
-            return;
-        } else {
-            targetOut.println(nickName + "님의 초대가 왔습니다. 수락하시겠습니까? (yes/no)");
-        }
+    private BufferedReader getInputStream() {
+        return in;
+    }
 
-    } public void setChatRoom(ChatRoom chatRoom) {
+     public void setChatRoom(ChatRoom chatRoom) {
         this.chatRoom = chatRoom;
     }
 
     public void whisper(String nickName, String targetUser, String message) {
 
-        PrintWriter targetOut = userList.get(targetUser); // 목적지 사용자의 출력 스트림 가져오기
+        PrintWriter targetOut = userList.get(targetUser);
         PrintWriter idOut = userList.get(nickName);
         if (targetUser.equals(nickName)) {
             targetOut.println("자기자신에게 귓속말을 할 수 없습니다");
@@ -298,12 +330,11 @@ public class ChatThread extends Thread {
             return;
         }
         if (targetOut != null) {
-            targetOut.println(nickName + "님의 귓속말: " + message); // 목적지 사용자에게 메시지 전송
+            targetOut.println(nickName + "님의 귓속말: " + message);
             targetOut.flush();
             idOut.println(nickName + " >>> " + targetUser + " : " + message);
             idOut.flush();
         } else {
-            // 목적지 사용자가 없는 경우 메시지를 보낼 수 없음을 알림
             userList.get(nickName).println("귓속말을 보낼 사용자 '" + targetUser + "'를 찾을 수 없습니다.");
         }
     }

@@ -5,21 +5,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChatServer {
+    private static Map<String, ChatThread> userThreadMap;
+
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(8008);
         System.out.println("서버가 준비되었습니다.");
         Map<String, PrintWriter> userList = new HashMap<>();
-        Map<String, ChatThread> userThreadList = new HashMap<>();
+        userThreadMap = new HashMap<>();
         ChatRoomService chatRoomService = new ChatRoomService();
 
         while(true) {
             Socket socket = serverSocket.accept();
             System.out.println("접속 : " + socket);
             ChatThread chatThread = new ChatThread(socket, chatRoomService, userList);
-            synchronized (userThreadList) {
-                userThreadList.put(chatThread.getNickName(), chatThread);
-            }
+            userThreadMap.put(chatThread.getNickName(), chatThread);
             chatThread.start();
         }
+    }
+    public static Map getUserThreadMap() {
+        return userThreadMap;
     }
 }

@@ -8,3 +8,9 @@ Sun Apr 28 19:32:25 KST 2024 | man1: /intvite
 Sun Apr 28 19:40:27 KST 2024 | man1: /intvite
 Sun Apr 28 19:40:30 KST 2024 | man1: 
 Sun Apr 28 20:09:27 KST 2024 | man2: d
+Sun Apr 28 23:04:29 KST 2024 | man2: man1
+Mon Apr 29 00:09:27 KST 2024 | man2: dd
+Mon Apr 29 00:09:47 KST 2024 | man1: 
+Mon Apr 29 00:09:55 KST 2024 | man1: dd
+Mon Apr 29 09:10:18 KST 2024 | man2: dd
+Mon Apr 29 09:11:01 KST 2024 | man2: dddddd
