@@ -22,7 +22,6 @@ public class ChatRoomService {
     public String chatRoomList() {
         StringBuilder sb = new StringBuilder();
         for (ChatRoom chatRoom : chatRoomList) {
-            // 방의 암호 유무를 확인하여 암호가 있는 경우 "[암호]"를 추가
             if (chatRoom.isPasswordProtected()) {
                 sb.append(chatRoom.toString()).append(" [암호]\n");
             } else {

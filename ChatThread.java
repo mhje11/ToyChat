@@ -208,9 +208,17 @@ public class ChatThread extends Thread {
             out.println("방 제목:");
             out.flush();
             String title = in.readLine();
+            if (title.equals(null) || title.equals("")) {
+                out.println("제목을 입력해주세요.");
+                return;
+            }
             out.println("암호:");
             out.flush();
             String password = in.readLine();
+            if (password.equals(null) || password.equals("")) {
+                out.println("암호를 입력해주세요.");
+                return;
+            }
             ChatRoom createdRoom = chatRoomService.createPasswordChatRoom(title, password);
             this.chatRoom = createdRoom;
             this.chatRoom.addChatThread(this);
