@@ -227,6 +227,10 @@ public class ChatThread extends Thread {
                 } else if (line.startsWith("/w")) {
                     StringTokenizer st = new StringTokenizer(line, " ");
                     String head = st.nextToken();
+                    if (!st.hasMoreTokens()) {
+                        out.println("귓속말 보낼 유저명을 입력해주세요.");
+                        continue;
+                    }
                     String targetUser = st.nextToken();
                     if (!st.hasMoreTokens()) {
                         out.println("메시지를 입력해주세요.");
